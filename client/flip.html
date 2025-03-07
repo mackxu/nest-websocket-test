@@ -1,0 +1,48 @@
+<button id="btn">排序</button>
+<ul id="ul">
+  <li>aaa</li>
+  <li>bbb</li>
+  <li>ccc</li>
+  <li>dddd</li>
+  <li>ee</li>
+</ul>
+<script>
+// first 记录要移动的元素位置
+// last 记录变化后的位置
+// invert 移动元素到first位置
+// play 使用动画还原到变化后的位置
+const btn = document.getElementById('btn');
+const ul = document.getElementById('ul');
+btn.addEventListener('click', handleClick);
+async function handleClick() {
+  const li = document.querySelector('li');
+  const firstLoc = li.getBoundingClientRect();
+  ul.appendChild(li);
+  // sleep();
+  const lastLoc = li.getBoundingClientRect();
+  li.style.transform = `translate(0, ${firstLoc.top - lastLoc.top}px)`;
+  requestAnimationFrame(() => {
+    li.style.transition = 'transform 0.4s ease';
+    li.style.removeProperty('transform');
+  });
+}
+
+function sleep(ttl = 3000) {
+  const start = Date.now();
+  while(Date.now() - start < ttl) {}
+} 
+</script>
+
+<style>
+  li {
+    list-style: none;
+    background-color: bisque;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 40px;
+
+    margin-bottom: 12px;
+  }
+</style>

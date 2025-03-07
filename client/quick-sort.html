@@ -1,0 +1,23 @@
+<script>
+
+  function quickSort(arr) {
+    if (arr.length < 2) return arr;
+    const low = [];
+    const high = [];
+    const pivod = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > pivod) {
+        high.push(arr[i]);
+      } else {
+        low.push(arr[i]);
+      }
+    }
+    return [...quickSort(low), pivod, ...quickSort(high)];
+  }
+
+  // 测试代码
+let arr = [3, 6, 8, 10, 1, 2, 1];
+console.log("原始数组:", arr);
+let sortedArr = quickSort(arr);
+console.log("排序后数组:", sortedArr);
+</script>
