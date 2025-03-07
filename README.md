@@ -57,7 +57,14 @@ app.use(
 
 ## ReadableStream vs Readable
 
-等价于`Readable.fromWeb()`
+**ReadableStream**  
+来源：Web Streams API，最初为浏览器设计，现已在 Node.js 中支持。  
+用途：用于处理流数据，特别是在需要与浏览器环境兼容的场景。  
+基于 Promise：使用 async/await 和 Promise 来处理数据。  
+方法：提供了 getReader() 等方法，用于读取数据。  
+跨平台：设计目标是跨平台兼容性，适用于浏览器和 Node.js。
+
+下面的实现等价于`Readable.fromWeb()`
 
 ```ts
 function webStreamToNodeStream(webStream: ReadableStream) {
