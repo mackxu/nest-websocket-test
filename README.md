@@ -54,3 +54,28 @@ app.use(
   }),
 );
 ```
+
+## ReadableStream vs Readable
+
+等价于`Readable.fromWeb()`
+
+```ts
+function webStreamToNodeStream(webStream: ReadableStream) {
+  const nodeStream = new Readable({
+    read() {},
+  });
+  const reader = webStream.getReader();
+  const pushData = () => {
+    reader.read().then(({ done, value }) => {
+      if (done) {
+        nodeStream.push(null);
+        return;
+      }
+      nodeStream.push(value);
+      pushData();
+    });
+  };
+  pushData();
+  return nodeStream;
+}
+```

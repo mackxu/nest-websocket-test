@@ -16,6 +16,7 @@ async function bootstrap() {
       target: PROXY_WS_TARGET,
       changeOrigin: true,
       ws: true,
+      logger: console,
       pathRewrite: {
         '^/sd-api': '',
       },
@@ -24,12 +25,13 @@ async function bootstrap() {
 
   app.use(
     createProxyMiddleware({
-      pathFilter: ['/webui/**', '/sd-api/**'],
+      pathFilter: ['/webui/**', '/sd-api/**', '!/webui/'],
       target: PROXY_HTTP_TARGET,
       changeOrigin: true,
+      logger: console,
       pathRewrite: {
         '^/webui/': '/',
-        '^/sd-api': '',
+        '^/sd-api/': '/',
       },
     }),
   );
