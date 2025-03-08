@@ -10,6 +10,7 @@
 - new Observable() 异步返回
 - 接口 OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 - **Sec-WebSocket-Key** 经过什么处理能得到 **Sec-WebSocket-Accept**
+- **StreamableFile** pass either a Buffer or a Readable
 
 ## 集成sd
 
