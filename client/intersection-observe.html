@@ -1,0 +1,45 @@
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .pad {
+    height: 1200px;
+  }
+
+  #target {
+    background: rgb(237, 28, 36);
+    height: 100px;
+    outline: 100px solid rgba(0, 0, 0, 0.2);
+  }
+
+  #info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+  }
+</style>
+
+<body>
+  <div class="pad"></div>
+  <div id="target"></div>
+  <div class="pad"></div>
+  <span id="info">isIntersecting = true</span>
+  <script>
+    // debugger
+    var io = new IntersectionObserver(
+      function (entries) {
+        document.getElementById("info").innerHTML = entries[0].isIntersecting
+          ? "isIntersecting = true"
+          : "isIntersecting = false";
+      },
+      {
+        rootMargin: "100px 0px 0px 0px"
+      }
+    );
+    io.observe(document.getElementById("target"));
+  </script>
+</body>
